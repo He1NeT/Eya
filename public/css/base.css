@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+/* 全局定义 */
+body{margin:0;padding:0; font-size:12px; font-family:"宋体";}
+div,ul,li,form,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,input,colgroup,col{margin:0;padding:0;border:none;}
+ul,li{list-style:none;}
+img{border:none; padding:0; margin:0;}
+input,select{font-size:12px;}
+table,td,tr{ margin:0; padding:0;}
+p{ margin:0; padding:0;}
+
+/* 自定义、大小、颜色 */
+.fB{ font-weight:bold;}
+.hidden{ display:none;}
+.left{ float:left;}
+.right{ float:right;}
+.clear{ clear:both;}
+.indent{ text-indent:2em;}
+.noBorder{border:none;}
+.normal{ font-weight:normal}
+.unLine,.unLine a{text-decoration:none;}
+.uLine,.uLine a{ text-decoration:underline;}
+.f11px{ font-size:11px;}
+.f12px{ font-size:12px;}
+.f14px{ font-size:14px;}
+.f15px{ font-size:15px;}
+.f16px{ font-size:16px;}
+.f18px{ font-size:18px;}
+.red{ color:#cc0000;}
+.green{ color:#408537;}
+.blue{ color:#336699;}
+.gray{ color:#666666;}
+.grays{ color:#888888;}
+
+
+/* 初始化链接 */
+a {color:#2c2c2c;text-decoration:none;}
+a:visited {color:#2c2c2c;text-decoration:none;}
+a:hover {color:#ba2636;text-decoration:underline;}
+a:active {color:#ba2636;}
+
+/* goTop */
+*html{ background-image:url(about:blank); background-attachment:fixed;}
+/*
+#goTop{position:fixed; bottom:10px; right:10px; _right:6px;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+#goTop a{ float:right; width:50px; height:50px; background-image:url(../images/gotop.png);background-repeat:no-repeat;}
+#goTop a.t1{ background-position:0px 0px;}
+#goTop a:hover.t1{ background-position:0px -50px;}
+*/
+.blank10{ font-size:1px; height:10px; clear:both;}
+
+#go-top{background: url("../images/go-top.png") 0 0;position: fixed;right: 20px;bottom: 20px;width: 54px;height: 54px;z-index: 100;cursor: pointer;display: none;}
+#go-top:hover,.mouse-leave{
+			background-position: 0 -64px;
+
+            -webkit-transition-property: background-position;
+            -webkit-transition-duration: 0.8s;
+
+            -o-transition-property: background-position;
+            -o-transition-duration: 0.8s;
+            
+            -moz-transition-property: background-position;
+            -moz-transition-duration: 0.8s;
+        }
+
+/* 页脚 */
+
+/* Page */
+
+.page{ margin:20px auto; overflow:hidden; font-size:14px; width:1013px; line-height:50px;}
+.pagef{ width:240px;}
+.pagef a{ font-size:12px; font-weight:bold; border:1px solid #633C3C; margin-right:6px; color:#ffffff; text-decoration:none;}
+.nextpage{ background:url(../images/dot-r.png) no-repeat 60px 11px #633C3C; padding:7px 23px 7px 13px; }
+.nextpage:hover{ background:url(../images/dot-r.png) no-repeat 60px 11px #442121; color:#ffffff; border:1px solid #442121; }
+.prewpage{ background:url(../images/dot-l.png) no-repeat 10px 11px #633C3C; padding:7px 13px 7px 23px; }
+.prewpage:hover{ background:url(../images/dot-l.png) no-repeat 10px 11px #442121; color:#ffffff; border:1px solid #442121; }
+.noprewpage{ background:url(../images/dot-nol.png) no-repeat 10px 11px #fff; padding:7px 13px 7px 23px; font-size:12px; border:1px solid #ffffff; margin-right:6px; color:#666;}
+.nonextpage{ background:url(../images/dot-nor.png) no-repeat 10px 11px #fff; padding:7px 13px 7px 23px; font-size:12px; border:1px solid #ffffff; margin-right:6px; color:#666;}
+
+
+.eya-page { padding:40px 0 40px 0px; text-align:center; font-weight:bold; font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif;}
+.eya-pagef{ width:1012px; height:50px; clear:both;}
+.eya-pagef a{ background:#633C3C; padding:8px 10px 8px 10px; color:#ffffff; margin-right: 4px; text-decoration:none; line-height:33px; border-radius:3px; }
+.eya-pagef a:hover {background: #aad83e;}
+.eya-pagef a:active { background: #aad83e;}
+.eya-pagef span.current { background:#aad83e; padding:8px 10px 8px 10px; color: #fff; margin-right: 4px; text-decoration: none; line-height:33px; border-radius:3px;}
+.eya-pagef span.disabled {background:#ffffff; padding:8px 10px 8px 10px; color: #666666; margin-right: 4px;  text-decoration: none; font-size:12px; line-height:33px; border-radius:3px;}

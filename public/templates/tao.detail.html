@@ -1,0 +1,86 @@
+{%extends 'base.html'%}
+{%block title%}咿呀网 - 发现你最想要的东西{%endblock%}
+{%block keywords%}咿呀网，eya,创意,家居,装饰,厨浴,办公,休闲,潮流,手工,工艺品,DIY,潮物{%endblock%}
+{%block description%}咿呀网，发现你最想要的东西{%endblock%}
+{%block css%}
+<link href="{{MEDIA_URL}}css/tao.detail.css" rel="stylesheet" type="text/css">
+{%endblock%}
+{%block welcome%}
+<div class="blank10"></div>
+{%endblock%}
+
+{%block content%}
+<div class="eyar-box">
+<div class="eyarc">
+	
+	<div class="eyarc-left">
+		
+		<div class="eyarc-content">
+			
+			<div class="eyarc-pic">
+				<p><a href="{{images.url}}buy/" target="_blank"><img src="{{images.gallery|thumb:"640x0"}}" title="{{images.name}}" width="640px"/></a></p>
+				<p class="eyarc-title"><img src="{{MEDIA_URL}}images/tao.png" /> <a href="{{images.url}}buy/" target="_blank" class="link-title">{{images.get_title|slice:":30"}}</a> <span class="eyarc-prices">{{images.price}}</span><span class="link-wbuy"><a href="{{images.url}}buy/" target="_blank" class="t1">购买</a></span></p>
+			</div>
+			
+			<div class="commentbox clearfix">
+			<ul class="clearfix f12px"><li class="commentbar"><a href="#">查看所有评论</a></li></ul>
+			<div id="commentslist">
+				{%for x in comments%}
+					<ul class="clearfix"><li style="margin-top:3px;"><img src="{{x.face}}"></li><li style="margin-left:8px;"><p>{{x.post_time|date:"Y-m-d H:i:s"}}</p><p>{{x.content}}</p></li></ul>
+				{%endfor%}
+			</div>	
+			</div>
+			<div class="commentbox">
+				<ul class="clearfix">
+					<li style="margin-top:0px;"><a href="javascript:void(0)" class="entercomment"><img id="faceurl" src="{{MEDIA_URL}}images/faces/f{{faces_id|random}}.png" /></a></li>
+					<li style="margin-left:8px;">
+						<p><input type="text" id="content" name="content" class="commentint" onfocus="javascript:if('写评论'==this.value)this.value='';" value="写评论"/></p>
+						<p><input type="hidden" id="message" name="message" value="{{images.id}}" /></p>
+						<div style="display:none"><input type="hidden" id="csrf" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/></div> 
+						<p style="color:#888888;" class="f12px">点头像发布评论</p>
+					</li>
+				</ul>
+			</div>
+           
+			
+			<div class="likebar">您或许还喜欢...</div>
+			<div class="like-box">
+				<ul>
+                {%for x in i_images%}
+					<li>
+						<p><a title="{{x.name}}" href="{{x.url}}" target="_blank">
+						<img src="{%if x.small_gallery%}{{x.small_gallery|thumb:"180x0"}}{%else%}{{x.gallery|thumb:"180x0"}}{%endif%}"  /></a></p>
+					</li>
+                {%endfor%}
+				</ul>
+			</div>
+			
+		</div>
+		
+	</div>
+		
+		<div class="eyarc-right">
+			<div class="eyarc-buy">
+				<ul>
+					<li class="icon-buy"><a href="{{images.url}}buy/" target="_blank">我要购买</a></li>
+					<li class="icon-classify"><a href="/{{images.category.url}}/" target="_blank">同类商品</a></li>
+					<li class="icon-more"><a href="{{images.url}}buy/" target="_blank">更多此商品信息</a></li>
+				</ul>	
+			</div>
+			<div class="eyarc-current-price">{{images.price}}</div>
+			<div class="eyarc-price"><a href="{{images.url}}buy/" class="t1" target="_blank"></a></div>
+			<div class="eyarc-share">
+				<div class="bshare-custom"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到豆瓣" class="bshare-douban"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=50d8c1ae-bd86-45ef-b510-914991045794&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+			</div>
+		</div>
+		<!-- End eyarc-right -->
+	
+</div>
+</div>
+{%endblock%}
+
+{%block hide%}{%endblock%}
+
+{%block js%}
+
+{%endblock%}

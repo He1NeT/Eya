@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{%block title%}{%endblock%}</title>
+<meta name="keywords" content="{%block keywords%}{%endblock%}" />
+<meta name="description" content="{%block description%}{%endblock%}" />
+<link href="{{MEDIA_URL}}css/base.css" rel="stylesheet" type="text/css">
+<link href="{{MEDIA_URL}}css/eya.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/eya.js"></script>
+<script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21357299"></script>
+{%block css%}{%endblock%}
+<!--
+<script src="淘宝APP"></script>
+-->
+</head>
+<body>
+<!-- for search -->
+<div class="fosearch clearfix" id="fosearch" style="display:none">
+	<div class="forbox">
+		<input name="q" id="q" type="text" onfocus="javascript:if('搜索宝贝'==this.value)this.value='';" value="" class="forsearch" /><input name="btnfilter" id="btnfilter" type="submit" class="forbtn" value="搜索宝贝" />
+	</div>
+</div>
+
+<!-- tnavigation -->
+<div class="eyaNav clearfix" id="navigator">
+	
+	<div class="eyaTop clearfix"><div class="eyaLogo"><a href="http://eya.cc"></a></div></div>
+	<div class="eyaMeun clearfix">
+		<div class="eyaMleft">
+			<a href="/" class="t1">首页</a>
+			<a href="/womens" class="t1">女生</a>
+			<a href="/mens" class="t1">男生</a>
+			<a href="/home" class="t1">家居</a>
+			<a href="/gadgets" class="t1">小玩意</a>	
+			<a href="/office" class="t1">办公</a>
+			<a href="/kitchen" class="t1">厨浴</a>
+		</div>
+		<div style="float:left; margin-left:20px; line-height:36px; font-size:12px; color:#ffffff;">关注我们：</div>
+		<div style="float:left; padding-top:8px;">
+		<p style="float:left;"><iframe width="136" height="24" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" scrolling="no" border="0" src="http://widget.weibo.com/relationship/followbutton.php?language=zh_cn&width=136&height=24&uid=2057594952&style=2&btn=light&dpc=1"></iframe></p>
+		</div>
+		<div class="eyaMright">
+			<a href="#success" class="setfavorite">收藏</a>
+			<a href="#top" class="tgsearch">搜索</a>
+		</div>
+	</div>
+	
+</div>
+<!-- tnavigation,end -->
+{%block welcome%}{%endblock%}
+
+{%block content%}
+<div class="container-682 page">
+    <div id="content">
+		<div class="wrapper-content">
+                 <div id="custom-tip" style="display:none">设置成功!</div>
+                			    <div class="custom-order">
+                        <div class="custom-setit fB f16px">浏览/{%if search%}{{q}}{%else%}{{category.name|default:"全部"}}{%endif%}</div>
+                						<div class="custom-setbox">
+                							<ul>
+                								<li class="f12px">自定义浏览设置</li>
+                							</ul>
+                							<ul>								
+                								<li><a href="javascript:;" class="custom-s"></a></li>
+                								<li><a href="javascript:;" class="custom-b-current"></a></li>
+                								<div style="display:none"><input type="hidden" id="csrf" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/></div>
+                							</ul>
+                						</div>
+                </div> 
+				
+                {%for x in items%}
+				    <div class="figure-box">				
+						<div class="figure-product {% if forloop.counter0|divisibleby:"3" %}figure-640{%else%}figure-310{%endif%}">
+						    <a href="{{x.url}}" target="_blank">
+								<figure>
+									<em class="wrapper-fig-image">
+										<span class="fig-image">
+										<img src="{{MEDIA_URL}}images/bg_figure.png" 
+										data-original="{% if forloop.counter0|divisibleby:"3" %}
+										{{x.gallery|thumb:"640x0"}}
+										{%else%}
+										{{x.gallery|thumb:"310x0"}}
+										{%endif%}" />
+										<code class="timeline"><sup></sup><big><b>{{x.price}}</b></big></code>
+										</span>
+									</em>
+									<span class="figure-name">{{x.name|slice:":16"}} <b>+ {{x.click}}</b></span>
+								</figure>
+							</a>
+						</div>
+					</div>
+                {%endfor%}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<div class="eya-page">
+	    <div style="margin:0 auto;" class="eya-pagef">
+        {%if items.has_other_pages%}
+        {%if items.has_previous%}<!-- <span class="disabled"> --><a href="./?page={{items.previous_page_number}}">上一页</a><!-- </span> -->{%endif%}
+        {%for p in page_range%}{%if p == page%}<span class="current">{%else%}<a href="./?page={{p}}" >{%endif%}{{p}}{%if p == page%}</span>{%else%}</a>{%endif%}{%endfor%}
+        {%if items.has_next%}<a href="./?page={{items.next_page_number}}">下一页</a>{%endif%}
+        {%endif%}
+        </div>
+</div>
+{%endblock%}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.masonry.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+    $('#wrapper-eya').masonry({ itemSelector: '.figure-310', isFitWidth: false});
+    });
+</script>
+
+<div title="移动到页首" id="go-top" class="mouse-leave" onclick="igoto_top()"></div>
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery-image.min.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery-plugs.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	$(function(){
+	$("img").lazyload({ effect : "fadeIn" });
+	});
+</script>
+
+<div style="width:950px; margin:10px auto; text-align:center;">
+
+<script type="text/javascript"> 
+alimama_pid="mm_34433644_3450621_11220387"; 
+alimama_width=950; 
+alimama_height=90; 
+</script> 
+<script src="http://a.alimama.cn/inf.js" type="text/javascript"> 
+</script>
+</div>
+<div class="clearfix" style="height:50px; line-height:22px; text-align:center; padding-top:20px; font-size:13px; color:#666A72;">
+<p>
+版权所有 © eya.cc 2012-{%now "Y"%} 业务合作请联系(QQ：282852423)
+</p>
+<p style="color:#888888;">
+内容声明：咿呀网所提供的非商品图片均由咿呀网采集收藏，未由咿呀网授权则不能用于任何商业用途
+</p>
+</div>
+<div style="display:none">
+<script src="http://s96.cnzz.com/stat.php?id=4910549&web_id=4910549" language="JavaScript"></script>
+</div>
+</body>
+</html>
+{%if category.js%}{{category.js|safe}}{%else%}
+<script type="text/javascript">
+$($('.eyaMleft a')[0]).addClass('current');
+</script>
+
+{%endif%}
+{%block js%}{%endblock%}					
